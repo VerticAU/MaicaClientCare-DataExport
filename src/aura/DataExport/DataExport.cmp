@@ -1,0 +1,84 @@
+<aura:component description="DataExport" implements="force:appHostable,lightning:isUrlAddressable" controller="CommonCtrl" access="global">
+
+    <!-- Handlers -->
+    <aura:handler name="change" value="{!v.exportSettingName}" action="{!c.handleSettingChange}"/>
+
+    <!-- Libraries -->
+    <lightning:notificationsLibrary aura:id="notifLib"/>
+    <c:aura_ModalService aura:id="modalService"/>
+
+    <!-- Attributes -->
+    <aura:attribute name="meta" type="Map" default="{}"/>
+    <aura:attribute name="payload" type="Map" default="{}"/>
+    <aura:attribute name="exportSettingName" type="String"/>
+    <aura:attribute name="exportCmp" type="Aura.Component[]"/>
+    <aura:attribute name="isLoading" type="Boolean" default="false"/>
+
+    <!-- Content -->
+    <div style="width: 100%;">
+        <div style="width: 50%; margin: 0 auto;">
+            <lightning:card title="Data Export" class="slds-card_boundary slds-m-vertical_medium" iconName="utility:upload">
+                <div class="slds-m-horizontal_small">
+
+                    <c:aura_ProcessorDataExport aura:id="DataExportInit"
+                                        response="{!v.meta}"
+                                        isLoading="{!v.isLoading}"
+                                        onInit="{!c.handleInit}">
+
+                        <div style="min-height: 20rem">
+                            <aura:if isTrue="{!and(v.meta.selectOptions, v.meta.selectOptions.exportSettingOptions)}">
+                                <c:aura_Select label="Export Setting"
+                                                 required="{!true}"
+                                                 value="{!v.exportSettingName}"
+                                                 options="{!v.meta.selectOptions.exportSettingOptions}"
+                                />
+                            </aura:if>
+
+                            <aura:if isTrue="{!not(empty(v.exportSettingName))}">
+                                {!v.exportCmp}
+                            </aura:if>
+
+                            <aura:if isTrue="{!and(not(empty(v.exportSettingName)), not(empty(v.exportCmp)))}">
+                                <c:aura_ProcessorDataExport aura:id="ExportGetProc" response="{!v.meta.getResponse}">
+
+                                    <lightning:card title="Files" class="slds-card_boundary slds-m-vertical_medium">
+                                        <div class="slds-m-horizontal_medium" style="min-height: 5rem">
+                                            <aura:if isTrue="{!and(v.meta.getResponse, and(v.meta.getResponse.dto, v.meta.getResponse.dto.chunks))}">
+                                                <div class="slds-grid slds-wrap">
+                                                    <aura:iteration items="{!v.meta.getResponse.dto.chunks}" var="chunk" indexVar="index">
+                                                        <div class="slds-col slds-size_2-of-12 slds-text-align_center slds-m-vertical_xx-small">
+                                                            <c:aura_ProcessorDataExport aura:id="ChunkProc"
+                                                                                uniqueId="{!chunk.startIndex}"
+                                                                                spinnerSize="x-small"
+                                                                                response="{!chunk.submit}">
+                                                                <lightning:button label="{!chunk.startIndex + '-' + chunk.endIndex}" onclick="{!c.handleChunkButtonClick}" value="{!chunk}"
+                                                                                  class="chunk-button"/>
+                                                            </c:aura_ProcessorDataExport>
+                                                        </div>
+                                                    </aura:iteration>
+                                                </div>
+                                                <aura:set attribute="else">
+                                                    <c:aura_ScopedNotification>
+                                                        <p>There are no any generated file.</p>
+                                                    </c:aura_ScopedNotification>
+                                                </aura:set>
+                                            </aura:if>
+                                        </div>
+                                    </lightning:card>
+
+                                </c:aura_ProcessorDataExport>
+                            </aura:if>
+                        </div>
+                    </c:aura_ProcessorDataExport>
+
+                </div>
+
+                <aura:set attribute="footer">
+                    <div style="min-height: 2rem">
+                        <lightning:button label="Cancel" class="slds-float_left" onclick="{!c.handleCancelClick}" disabled="{!v.isLoading}"/>
+                    </div>
+                </aura:set>
+            </lightning:card>
+        </div>
+    </div>
+</aura:component>

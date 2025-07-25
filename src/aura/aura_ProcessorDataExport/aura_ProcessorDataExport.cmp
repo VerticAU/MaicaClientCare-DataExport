@@ -1,0 +1,83 @@
+<aura:component extensible="true" description="vertic_Processor" controller="vertic_CommonCtrl" implements="force:hasRecordId">
+    <!-- Events -->
+    <aura:registerEvent name="onInit" type="c:vertic_ComponentEvent"/>
+
+    <!-- Handlers -->
+    <aura:handler name="init" value="{!this}" action="{!c.handleInit}"/>
+
+    <!-- Methods -->
+    <aura:method name="init" action="{!c.handleInitProc}" access="public">
+        <aura:attribute type="String" name="processor" access="public"/>
+        <aura:attribute type="Object" name="request" access="public"/>
+    </aura:method>
+
+    <aura:method name="process" action="{!c.handleSubmitProc}" access="public">
+        <aura:attribute type="String" name="processor" access="public"/>
+        <aura:attribute type="Object" name="request" access="public"/>
+        <aura:attribute type="Boolean" name="isMergeResponse" access="public"/>
+    </aura:method>
+
+    <aura:method name="setStage" action="{!c.handleSetStage}" access="public">
+        <aura:attribute type="String" name="stage" access="public"/>
+    </aura:method>
+
+    <aura:method name="reload" action="{!c.handleReload}" access="public"/>
+    <aura:method name="validate" action="{!c.handleValidate}" access="public"/>
+
+    <!-- Attributes -->
+    <aura:attribute name="uniqueId" type="String" access="public"/>
+    <aura:attribute name="initProcessor" type="String" access="public"/>
+    <aura:attribute name="submitProcessor" type="String" access="public"/>
+    <aura:attribute name="stage" type="String" access="public" default="initial"/>
+    <aura:attribute name="response" type="Object" access="public" required="{!true}"/>
+    <aura:attribute name="spinnerSize" type="String" access="public" default="medium"/>
+
+    <!-- Flags -->
+    <aura:attribute name="isShowErrors" type="Boolean" access="public"/>
+    <aura:attribute name="isLoading" type="Boolean" access="public" default="{!false}"/>
+    <aura:attribute name="isReloading" type="Boolean" access="private" default="{!false}"/>
+    <aura:attribute name="isValidatable" type="Boolean" access="public" default="{!false}"/>
+    <aura:attribute name="isShowPending" type="Boolean" access="public" default="{!false}"/>
+    <aura:attribute name="isShowFailure" type="Boolean" access="public" default="{!false}"/>
+
+    <!-- Stages -->
+    <aura:attribute name="initial" type="Aura.Component[]" access="public"/>
+    <aura:attribute name="pending" type="Aura.Component[]" access="public"/>
+    <aura:attribute name="success" type="Aura.Component[]" access="public"/>
+    <aura:attribute name="failure" type="Aura.Component[]" access="public">
+        <c:vertic_ScopedNotification iconName="utility:clear" iconVariant="error">
+            <div class="slds-grid">
+                <div class="slds-col">{!v.response.dto.error}</div>
+                <div class="slds-col slds-text-align_right">
+                    <lightning:buttonIcon iconName="utility:close" alternativeText="Close" size="small" onclick="{!c.handleCloseClick}"/>
+                </div>
+            </div>
+        </c:vertic_ScopedNotification>
+    </aura:attribute>
+
+    <c:vertic_Spinner isLoading="{!if(v.isReloading, true, if(v.isShowPending, false, v.isLoading))}" size="{!v.spinnerSize}">
+        <div class="slds-m-horizontal_medium"><c:vertic_ErrorMessages aura:id="errorMessages"/></div>
+
+        <div aura:id="content">
+
+            {!v.body}
+
+            <aura:if isTrue="{!v.stage == 'initial'}">
+                {!v.initial}
+            </aura:if>
+
+            <aura:if isTrue="{!v.stage == 'pending'}">
+                {!v.pending}
+            </aura:if>
+
+            <aura:if isTrue="{!v.stage == 'success'}">
+                {!v.success}
+            </aura:if>
+
+            <aura:if isTrue="{!v.stage == 'failure'}">
+                {!v.failure}
+            </aura:if>
+        </div>
+    </c:vertic_Spinner>
+
+</aura:component>
