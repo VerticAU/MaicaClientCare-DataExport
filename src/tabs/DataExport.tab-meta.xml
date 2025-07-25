@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomTab xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>DataExport</fullName>
+    <label>Data Export</label>
+    <motif>Custom57: Handsaw</motif>
+    <url>c__DataExport</url>
+    <urlEncodingKey>LightningComponent</urlEncodingKey>
+    <content>lightningcomponent://c:DataExport</content>
+    <frameHeight>600</frameHeight>
+    <tabVisibility>DefaultOn</tabVisibility>
+</CustomTab>
