@@ -3,7 +3,7 @@
     <fullName>DataExport</fullName>
     <label>Data Export</label>
     <motif>Custom57: Handsaw</motif>
-    <component>c:DataExport</component>
-    <page>c:DataExport</page> <!-- optional fallback -->
-    <tabVisibility>DefaultOn</tabVisibility>
+    <auraComponent>c:DataExport</auraComponent>
+    <description>Tab for DataExport Lightning Component</description>
+    <mobileReady>true</mobileReady>
 </CustomTab>

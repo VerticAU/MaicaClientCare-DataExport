@@ -37,7 +37,6 @@
                     <label>XML</label>
                 </value>
             </valueSetDefinition>
-            <valueSetType>Defined</valueSetType>
         </valueSet>
     </fields>
 
