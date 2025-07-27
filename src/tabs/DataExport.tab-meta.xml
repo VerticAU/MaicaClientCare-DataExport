@@ -3,9 +3,7 @@
     <fullName>DataExport</fullName>
     <label>Data Export</label>
     <motif>Custom57: Handsaw</motif>
-    <url>c__DataExport</url>
-    <urlEncodingKey>LightningComponent</urlEncodingKey>
-    <content>lightningcomponent://c:DataExport</content>
-    <frameHeight>600</frameHeight>
+    <component>c:DataExport</component>
+    <page>c:DataExport</page> <!-- optional fallback -->
     <tabVisibility>DefaultOn</tabVisibility>
 </CustomTab>

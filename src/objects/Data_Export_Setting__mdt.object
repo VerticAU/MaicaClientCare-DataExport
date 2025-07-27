@@ -6,8 +6,6 @@
     <visibility>Public</visibility>
     <deploymentStatus>Deployed</deploymentStatus>
     <sharingModel>Read</sharingModel>
-    <customSettingsType>Hierarchy</customSettingsType>
-    <customSettingsType>Metadata</customSettingsType>
 
     <fields>
         <fullName>Chunk_Limit__c</fullName>
