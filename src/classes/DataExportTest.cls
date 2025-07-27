@@ -3,7 +3,7 @@ public with sharing class DataExportTest {
     public static testMethod void testCommonHandler() {
         try {
             DataExportCommonHandler dataExportCommonHandler = new DataExportCommonHandler();
-            vertic_Response response = dataExportCommonHandler.process(new Map<String, Object>{
+            Response response = dataExportCommonHandler.process(new Map<String, Object>{
                     'action' => 'init',
                     'payload' => new Map<String, Object>{
                     },

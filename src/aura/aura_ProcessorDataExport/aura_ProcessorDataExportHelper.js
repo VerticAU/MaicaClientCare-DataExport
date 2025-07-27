@@ -143,7 +143,7 @@
             if (inputCmp) {
 
                 var validity;
-                if (inputCmp && inputCmp.getType && inputCmp.getType() == 'c:vertic_Lookup') {
+                if (inputCmp && inputCmp.getType && inputCmp.getType() == 'c:aura_Lookup') {
                     // Do no get validity from custom components.
                 } else {
                     try {
