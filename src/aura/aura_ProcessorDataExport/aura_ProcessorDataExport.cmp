@@ -1,6 +1,6 @@
-<aura:component extensible="true" description="vertic_Processor" controller="vertic_CommonCtrl" implements="force:hasRecordId">
+<aura:component extensible="true" description="aura_ProcessorDataExpor" controller="CommonCtrl" implements="force:hasRecordId">
     <!-- Events -->
-    <aura:registerEvent name="onInit" type="c:vertic_ComponentEvent"/>
+    <aura:registerEvent name="onInit" type="c:aura_ComponentEvent"/>
 
     <!-- Handlers -->
     <aura:handler name="init" value="{!this}" action="{!c.handleInit}"/>
@@ -45,18 +45,18 @@
     <aura:attribute name="pending" type="Aura.Component[]" access="public"/>
     <aura:attribute name="success" type="Aura.Component[]" access="public"/>
     <aura:attribute name="failure" type="Aura.Component[]" access="public">
-        <c:vertic_ScopedNotification iconName="utility:clear" iconVariant="error">
+        <c:aura_ScopedNotification iconName="utility:clear" iconVariant="error">
             <div class="slds-grid">
                 <div class="slds-col">{!v.response.dto.error}</div>
                 <div class="slds-col slds-text-align_right">
                     <lightning:buttonIcon iconName="utility:close" alternativeText="Close" size="small" onclick="{!c.handleCloseClick}"/>
                 </div>
             </div>
-        </c:vertic_ScopedNotification>
+        </c:aura_ScopedNotification>
     </aura:attribute>
 
-    <c:vertic_Spinner isLoading="{!if(v.isReloading, true, if(v.isShowPending, false, v.isLoading))}" size="{!v.spinnerSize}">
-        <div class="slds-m-horizontal_medium"><c:vertic_ErrorMessages aura:id="errorMessages"/></div>
+    <c:aura_Spinner isLoading="{!if(v.isReloading, true, if(v.isShowPending, false, v.isLoading))}" size="{!v.spinnerSize}">
+        <div class="slds-m-horizontal_medium"><c:aura_ErrorMessages aura:id="errorMessages"/></div>
 
         <div aura:id="content">
 
@@ -78,6 +78,6 @@
                 {!v.failure}
             </aura:if>
         </div>
-    </c:vertic_Spinner>
+    </c:aura_Spinner>
 
 </aura:component>

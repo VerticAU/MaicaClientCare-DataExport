@@ -79,9 +79,9 @@
             'lightning:textarea',
             'lightning:radioGroup',
             'lightning:checkboxGroup',
-            'c:vertic_Validity',
-            'c:vertic_Lookup',
-            'c:vertic_MultiSelect'
+            'c:aura_Validity',
+            'c:aura_Lookup',
+            'c:aura_MultiSelect'
         ];
         var inputComponents = [];
 
