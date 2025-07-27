@@ -5,5 +5,4 @@
     <motif>Custom57: Handsaw</motif>
     <auraComponent>c:DataExport</auraComponent>
     <description>Tab for DataExport Lightning Component</description>
-    <mobileReady>true</mobileReady>
 </CustomTab>

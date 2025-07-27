@@ -12,5 +12,15 @@
         <members>*</members>
         <name>CustomTab</name>
     </types>
+    <types>
+        <members>Data_Export_Setting__mdt.Chunk_Limit__c</members>
+        <members>Data_Export_Setting__mdt.Format__c</members>
+        <members>Data_Export_Setting__mdt.Is_Active__c</members>
+        <name>CustomField</name>
+    </types>
+    <types>
+        <members>Data_Export_Setting__mdt</members>
+        <name>CustomMetadata</name>
+    </types>
     <version>62.0</version>
 </Package>
