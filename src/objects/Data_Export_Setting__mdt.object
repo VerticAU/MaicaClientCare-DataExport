@@ -4,7 +4,6 @@
     <label>Data Export Setting</label>
     <pluralLabel>Data Export Settings</pluralLabel>
     <visibility>Public</visibility>
-    <sharingModel>ReadWrite</sharingModel>
 
     <fields>
         <fullName>Chunk_Limit__c</fullName>
