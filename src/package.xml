@@ -14,7 +14,7 @@
     </types>
     <types>
         <members>Data_Export_Setting__mdt</members>
-        <name>CustomMetadata</name>
+        <name>CustomObject</name>
     </types>
     <types>
         <members>Data_Export_Setting__mdt.Chunk_Limit__c</members>
